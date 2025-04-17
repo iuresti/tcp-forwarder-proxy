@@ -89,4 +89,16 @@ public class ConfigController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("forward/{port}/{connectionId}")
+    public ResponseEntity<Void> interruptConnection(@PathVariable int port, @PathVariable String connectionId) {
+
+        if (activeRules.containsKey(port)) {
+            activeRules.get(port).interruptConnection(connectionId);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.noContent().build();
+    }
+
 }
