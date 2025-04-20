@@ -73,7 +73,9 @@ public class TcpForwarder {
 
         void close() {
             try {
-                targetSocket.close();
+                if(targetSocket != null) {
+                    targetSocket.close();
+                }
             } catch (IOException e) {
                 logger.error("[{}] Error closing target socket", id, e);
             }
